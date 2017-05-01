@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewChild, AfterViewChecked, AfterViewInit, NgZone } from '@angular/core';
-
+import { Component,PLATFORM_ID, Inject, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewChild, AfterViewChecked, AfterViewInit, NgZone } from '@angular/core';
+import {isPlatformBrowser} from "@angular/common";
 declare var Swiper: any;
 
 @Component({
@@ -23,10 +23,10 @@ export class SwiperComponent implements AfterViewChecked, AfterViewInit {
     private initialized = false;
     private shouldInitialize = true;
 
-    constructor(private elementRef: ElementRef, private ngZone: NgZone) { }
+    constructor(@Inject(PLATFORM_ID) private platformId: Object,private elementRef: ElementRef, private ngZone: NgZone) { }
 
     ngAfterViewInit() {
-        if (this.shouldInitialize) {
+        if (this.shouldInitialize && isPlatformBrowser(this.platformId)) {
             this.setup();
         }
     }
@@ -41,11 +41,11 @@ export class SwiperComponent implements AfterViewChecked, AfterViewInit {
     }
 
     ngAfterViewChecked() {
-        if (this.shouldInitialize) {
+        if (isPlatformBrowser(this.platformId) &&this.shouldInitialize) {
             this.setup();
         }
 
-        if (this.swiperWrapper && this.slideCount !== this.swiperWrapper.childElementCount) {
+        if (isPlatformBrowser(this.platformId) && this.swiperWrapper && this.slideCount !== this.swiperWrapper.childElementCount) {
             this.slideCount = this.swiperWrapper.childElementCount;
             this.Swiper.update();
         }
