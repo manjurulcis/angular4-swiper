@@ -5,7 +5,7 @@ Use iDangero.us's great slider [Swiper](http://idangero.us/swiper/#.V9C3w4VOLaI)
 ### Install
 
 ```bash
-npm install https://github.com/simplymovein/angular4-useful-swiper
+npm install https://github.com/simplymovein/angular4-swiper
 ```
 
 ### Setup
