@@ -1,6 +1,6 @@
 import { Component,PLATFORM_ID, Inject, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewChild, AfterViewChecked, AfterViewInit, NgZone } from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
-declare var Swiper: any;
+import * as Swiper from 'swiper';
 
 @Component({
     selector: 'swiper',
